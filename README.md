@@ -66,7 +66,3 @@ B.Tech Computer Science & Data Science (1st Year)
 ## License
 
 This project is licensed under the MIT License – feel free to use, modify, and share!
-
-***
-
-**Tip:** Replace `yourusername` with your GitHub username in the clone URL above. Update any details as you improve the system or convert it for GUI/database use in future.
