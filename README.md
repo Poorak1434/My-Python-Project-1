@@ -50,11 +50,8 @@ A simple, secure command-line billing and inventory management system in Python.
 
 ```
 billing-system/
-├── Assignment.py          # Main Python script (all logic in one file)
-├── README.md        # This documentation
-├── LICENSE          # MIT License for open source use
-├── .gitignore       # To ignore temporary Python files
-└── requirements.txt # (Empty, as no libraries are needed)
+├── Assignment.py    
+├── README.md        
 ```
 
 ## Author
