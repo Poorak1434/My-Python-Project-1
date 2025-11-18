@@ -1,8 +1,29 @@
 # Name: Poorak Pandey
 # Enrollment Number: 2502140055
+import json
 
 product_db = {}
 master_pass = "ironman@123"
+JSON_FILE = "products.json"
+
+
+def save_products():
+    """Saves the product database to the JSON file."""
+    with open(JSON_FILE, "w") as f:
+        json.dump(product_db, f, indent=4)
+
+
+def load_products():
+    """Loads the product database from the JSON file."""
+    global product_db
+    try:
+        with open(JSON_FILE, "r") as f:
+            product_db = json.load(f)
+    except FileNotFoundError:
+        product_db = {}  # Start with an empty DB if no file exists
+    except json.JSONDecodeError:
+        print("Warning: Could not decode JSON, starting with an empty database.")
+        product_db = {}
 
 
 def login():
@@ -40,6 +61,7 @@ def add_product():
         return
 
     product_db[code] = (name, price, stock)
+    save_products()
     print(f"Product '{name}' added successfully.")
 
 
@@ -60,6 +82,7 @@ def modify_product():
             return
 
         product_db[code] = (name, price, stock)
+        save_products()
         print("Product details updated.")
     else:
         print("Error: Product not found.")
@@ -70,6 +93,7 @@ def delete_product():
     code = input("Enter product code to delete: ")
     if code in product_db:
         deleted_item = product_db.pop(code)  # Get item details before deleting
+        save_products()
         print(f"Product '{deleted_item[0]}' deleted.")
     else:
         print("Error: Product not found.")
@@ -160,6 +184,7 @@ def generate_bill():
 
     print("-" * 40)
     print(f"GRAND TOTAL: Rs {grand_total:.2f}")
+    save_products()
     print("Thank you for shopping!")
 
 
@@ -196,4 +221,5 @@ def main_menu():
 
 # Main program execution
 if login():
+    load_products()
     main_menu()
